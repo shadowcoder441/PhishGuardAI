@@ -5,9 +5,13 @@ import os
 
 router = APIRouter()
 
-
-# Absolute path to model
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(__file__)
+        )
+    )
+)
 
 MODEL_PATH = os.path.join(
     BASE_DIR,
@@ -26,11 +30,19 @@ class URLRequest(BaseModel):
 @router.post("/predict-url")
 def predict_url(data: URLRequest):
 
-    prediction = model.predict([data.url])[0]
-    probability = model.predict_proba([data.url])[0]
+    try:
 
-    return {
-        "url": data.url,
-        "prediction": int(prediction),
-        "confidence": float(max(probability))
-    }
+        prediction = model.predict([data.url])[0]
+        probability = model.predict_proba([data.url])[0]
+
+        return {
+            "url": data.url,
+            "prediction": int(prediction),
+            "confidence": float(max(probability))
+        }
+
+    except Exception as e:
+
+        return {
+            "error": str(e)
+        }
