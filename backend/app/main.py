@@ -9,14 +9,11 @@ app = FastAPI(title="PhishGuard AI")
 # CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 # Routes
 app.include_router(predict_router)
