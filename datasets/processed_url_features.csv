@@ -1,0 +1,6 @@
+url_length,has_https,dot_count,hyphen_count,slash_count,digit_count,special_char_count,suspicious_keyword_count,label
+17,0,1,0,2,0,1,0,0
+17,0,1,0,2,0,1,0,0
+36,0,1,3,2,0,1,3,1
+34,0,1,3,2,0,1,3,1
+32,0,1,3,2,0,1,0,1
